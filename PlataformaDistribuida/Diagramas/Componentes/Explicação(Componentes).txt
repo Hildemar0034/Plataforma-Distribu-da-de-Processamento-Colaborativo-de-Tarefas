@@ -1,0 +1,7 @@
+Diagrama de Componentes
+
+O diagrama de componentes mostra a arquitetura do sistema, ou seja, quais são as partes que compõem ele e como essas partes se relacionam. O cliente se comunica com o orquestrador principal por meio de gRPC ou sockets TCP. O orquestrador principal e o backup se comunicam entre si usando UDP multicast para manter o estado sincronizado. O orquestrador principal também é quem envia as tarefas para os workers e recebe de volta os heartbeats e os resultados das execuções.
+
+Além desses, existem os módulos de apoio que fazem parte da arquitetura: o Estado Global, que registra as tarefas que estão em execução, concluídas ou que falharam; o Relógio de Lamport, que serve para garantir a ordem dos eventos no sistema distribuído; e os modelos de Tarefa e Usuário, que representam os dados que circulam no sistema. O orquestrador ainda utiliza logs para registrar os principais acontecimentos, como submissão de tarefas, falhas detectadas e reatribuições.
+
+Esse diagrama serve para visualizar a arquitetura de forma mais técnica e organizada, mostrando quais são os componentes principais, como eles se conectam e quais responsabilidades cada um tem dentro do sistema. Ele dá uma visão mais próxima da implementação, ajudando a entender como o código foi estruturado.

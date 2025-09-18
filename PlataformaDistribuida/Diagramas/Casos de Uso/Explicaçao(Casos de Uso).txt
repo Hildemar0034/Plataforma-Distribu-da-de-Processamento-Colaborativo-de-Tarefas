@@ -1,0 +1,5 @@
+Diagrama de Casos de Uso
+
+Esse diagrama mostra de forma geral como o sistema funciona do ponto de vista dos atores que participam dele. O cliente tem as funções de autenticar no sistema, submeter tarefas e também consultar o status dessas tarefas. O orquestrador principal é o responsável por receber as tarefas, escolher para qual worker vai enviar, manter o estado global atualizado e ainda detectar se algum worker falhou. Já o orquestrador de backup acompanha o principal, mantendo uma cópia sincronizada do estado, e assume o controle caso o principal pare de funcionar. Os workers, por sua vez, executam as tarefas que recebem e enviam periodicamente o heartbeat para sinalizar que estão ativos.
+
+A ideia desse diagrama é mostrar de forma simples e clara quais são os papéis no sistema e o que cada um pode fazer. Ele ajuda a ter uma visão de alto nível, sem entrar nos detalhes técnicos, mas já deixando evidente que o sistema não depende apenas de um único ponto, já que existe a redundância com o orquestrador de backup e o mecanismo de detecção de falhas dos workers.
