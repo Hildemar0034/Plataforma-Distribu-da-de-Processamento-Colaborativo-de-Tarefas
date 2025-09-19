@@ -1,11 +1,36 @@
-Plataforma Distribuída de Processamento Colaborativo de Tarefas (versão simplificada)
+Plataforma Distribuída de Processamento Colaborativo de Tarefas 
 ===================================================================================
 
-O projeto é uma implementação em Java (linha de comando) que simula:
+Este projeto é uma **implementação em Java (linha de comando)** que simula uma plataforma distribuída para execução colaborativa de tarefas.  
+O sistema é composto por:
+
 - Orquestrador Principal (porta TCP 5000)
 - Orquestrador Backup (escuta multicast; assume papel de principal se o principal sumir)
 - Workers (conectam-se ao orquestrador e executam tarefas simuladas)
 - Clientes (autenticação simples e submissão de tarefas)
+
+Estrutura
+
+```
+PlataformaDistribuida
+├── src
+│   ├── cliente
+│   │   └── Cliente.java          # Classe do cliente; autenticação e submissão de tarefas
+│   ├── orquestrador
+│   │   ├── OrquestradorPrincipal.java  # Coordena os workers e gerencia tarefas
+│   │   └── OrquestradorBackup.java     # Assume como principal se necessário
+│   ├── worker
+│   │   └── Worker.java           # Executa as tarefas atribuídas pelo orquestrador
+│   ├── modelo
+│   │   ├── Tarefa.java           # Representa uma tarefa do sistema
+│   │   ├── Usuario.java          # Representa um usuário/cliente
+│   │   └── EstadoGlobal.java     # Mantém o estado global do sistema
+│   └── util
+│       └── RelogioLamport.java   # Implementa relógio lógico de Lamport
+├── bin                            # Diretório de saída da compilação
+└── README.md                       # Este arquivo de documentação
+
+```
 
 Como compilar
 -------------
@@ -69,17 +94,15 @@ Nenhum impacto no sistema global.
 As tarefas submetidas permanecem registradas no orquestrador.
 Ao reconectar, o cliente pode usar Status para ver as tarefas pendentes/concluídas (se ainda estiverem no estado global).
 
+Material complementar
+---------------------
+Além do código-fonte, o repositório contém também:
 
-Estrutura do projeto
---------------------
-/PlataformaDistribuida
-  /src
-    /cliente (Cliente.java)
-    /orquestrador (OrquestradorPrincipal.java, OrquestradorBackup.java)
-    /worker (Worker.java)
-    /modelo (Tarefa.java, Usuario.java, EstadoGlobal.java)
-    /util (RelogioLamport.java)
-  /bin  (gerado após compilação)
-  README.md
+- **Diagramas UML** (3 diagramas solicitados na atividade)
+- **Slides de apresentação** (resumo do funcionamento e arquitetura do sistema)
+- **Documentação completa** (este README + relatório técnico detalhado)
+
+Todos os artefatos estão organizados de acordo com os requisitos da atividade.
+
 
 
